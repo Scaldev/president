@@ -24,7 +24,7 @@ app.post('/utilisateurs', (req, res) => {
   });
 
 // Port d'écoute du serveur
-const port = process.env.PORT || 50402;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Serveur en écoute sur le port ${port}`);
 });
