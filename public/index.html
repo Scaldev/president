@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+</head>
+<body>
+    <h1>Inscription</h1>
+    <form id="inscription-form">
+        <label for="nom">Nom d'utilisateur:</label>
+        <input type="text" id="nom" name="nom" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="motdepasse">Mot de passe:</label>
+        <input type="password" id="motdepasse" name="motdepasse" required><br>
+
+        <button type="submit">S'inscrire</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById("inscription-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const nom = document.getElementById("nom").value;
+            const email = document.getElementById("email").value;
+            const motdepasse = document.getElementById("motdepasse").value;
+
+            console.log("cc")
+
+            // Envoyer les données au serveur via Axios
+            axios.post("/utilisateurs", { nom, email, motdepasse })
+                .then(function (response) {
+                    console.log("Réponse du serveur:", response.data);
+                    alert("Inscription réussie !");
+                    // Rediriger l'utilisateur vers une autre page, par exemple, la page de connexion
+                    window.location.href = "/connexion.html";
+                })
+                .catch(function (error) {
+                    console.error("Erreur lors de l'inscription:", error);
+                    alert("Une erreur est survenue lors de l'inscription. Veuillez réessayer.");
+                });
+        });
+    </script>
+</body>
+</html>
